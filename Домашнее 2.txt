@@ -1,0 +1,29 @@
+1.Установите СУБД MySQL. Создайте в домашней директории файл .my.cnf, задав в нем логин и пароль, который указывался при установке.
+
+[mysql]
+user=kochneva
+password=
+
+
+/*[client]
+user=kochneva
+password=
+mysqldump mysql > mysql.sql*/
+
+2.Создайте базу данных example, разместите в ней таблицу users, состоящую из двух столбцов, числового id и строкового name.
+
+CREATE DATABASE example;
+SHOW DATABASES;
+CREATE TABLE users (id int);
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+name CHAR(10) DEFAULT 'any'
+);
+INSERT INTO users VALUES (DEFAULT, 'Новый пользователь');
+
+3. Создайте дамп базы данных example из предыдущего задания, разверните содержимое дампа в новую базу данных sample.
+
+mysqldump -u kochneva -p users > users.sql
+CREATE DATABASE sample;
+mysql -u kochneva -p sample < users.sql
